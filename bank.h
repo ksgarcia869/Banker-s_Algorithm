@@ -16,7 +16,16 @@ public:
 
   bool is_avail(const ext_vector<int>& req) const { return req < avail; }
 
-  bool req_approved(int idx, const ext_vector<int>&req) const { return true; }
+  bool req_approved(int idx, const ext_vector<int>&req) const {
+     Customer* cust = customers[idx];
+    if(cust->need_exceeded(req))
+      req = cust->get_need();
+    if(req > avail)
+      return false;
+    if(!is_safe(idx, req))
+      return false;
+    return true;
+     }
 
 
   void add_customer(Customer* c){customers.push_back(c);}
