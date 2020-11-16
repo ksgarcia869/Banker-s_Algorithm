@@ -31,6 +31,7 @@ public:
     pthread_t* get_threadid(){return &thread_id;}
     Bank* get_bank() const{return bank;}
     ext_vector<int> get_max() const{return max_;}
+    ext_vector<int> get_need() const{return need;}
 
     bool needs_met() const{return alloc == max_;}
     bool need_exceeded(const ext_vector<int>& req) const{return req > need;}
